@@ -7,6 +7,11 @@ source ${ROOT_DIR}/facts.sh
 # Removes xhost access and docker container
 function cleanUp() {
 
+  # If possible remove xhost access
+  if [[ ${1} != '' ]]; then
+    xhost -local:${1} > /dev/null
+  fi
+
   # Wait for the container to start running.
   #
   # If the container has not entered state 'running' before the sleep is over
@@ -20,7 +25,6 @@ function cleanUp() {
   while [[ $(docker inspect --format='{{.State.Status}}' ${2}) == 'running' ]]; do
     sleep .1
   done
-  xhost -local:${1} > /dev/null
 
   # Ungracefully remove the container.
   # The removal is forced to prevent the container to become a zombie due to

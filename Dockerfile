@@ -16,6 +16,8 @@ FROM debian:stable-slim
 
 ARG UID=1000
 ARG GID=1000
+ARG USER=eclipse
+ARG GROUP=eclipse
 
 # Workaround for a bug causing installation of `default-jre` to fail.
 # See: https://github.com/debuerreotype/docker-debian-artifacts/issues/24
@@ -29,8 +31,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # Create unprivileged user to run Eclipse
 # User's UID and GID should match the builder's IDs in order not to screw up the file permissions and ownerships.
-RUN addgroup --gid 1000 eclipse \
- && adduser --disabled-password --disabled-login --uid $UID --gid $GID --gecos '' eclipse
+RUN addgroup --gid 1000 $GROUP \
+ && adduser --disabled-password --disabled-login --uid $UID --gid $GID --gecos '' $USER
 
 # Get Eclipse from builder container
 COPY --from=builder /opt /opt

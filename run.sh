@@ -46,7 +46,7 @@ containerId=$(docker create \
   --name "${containerName}" \
   --env="DISPLAY=${DISPLAY}" \
   --volume='/tmp/.X11-unix:/tmp/.X11-unix:rw' \
-  --volume="${HOME}:/home/eclipse" \
+  --volume="${HOME}:${HOME}" \
   ${DOCKER_IMAGE})
 
 # Get container's hostname for xhost access later on.

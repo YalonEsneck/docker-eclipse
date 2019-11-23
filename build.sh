@@ -20,4 +20,7 @@ else
   echo "Building Eclipse IDE as ${uid}:${gid}."
 fi
 
-docker build "${ROOT_DIR}" --tag="${DOCKER_IMAGE}"
+docker build "${ROOT_DIR}" \
+  --tag="${DOCKER_IMAGE}" \
+  --build-arg UID=${uid} \
+  --build-arg GID=${gid}

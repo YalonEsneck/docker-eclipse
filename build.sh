@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-ROOT_DIR=$(dirname ${0})
+ROOT_DIR=$(realpath $(dirname ${0}))
 source ${ROOT_DIR}/facts.sh
 
 uid=$(id --user)

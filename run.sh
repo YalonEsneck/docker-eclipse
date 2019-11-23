@@ -51,10 +51,12 @@ containerId=$(docker create \
 
 # Get container's hostname for xhost access later on.
 containerHostname=$(docker inspect --format='{{ .Config.Hostname }}' "${containerId}")
-trap 'cleanUp "${containerHostname}" "${containerName}"' ERR
+
+# Enable trap to ensure cleanup after us.
+trap 'cleanUp "${containerHostname}" "${containerName}"' ERR EXIT
 
 # Allow access to xhost for container's application.
 xhost +local:${containerHostname} > /dev/null
-docker start "${containerId}"
 
-cleanUp "${containerHostname}" "${containerName}" &
+# Actually start the application.
+docker start "${containerId}" > /dev/null

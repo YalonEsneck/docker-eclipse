@@ -16,7 +16,7 @@ cat <<EOF > "${HOME}/.local/share/applications/eclipse-${DOCKER_TAG}.desktop"
 [Desktop Entry]
 Name=Eclipse - ${DOCKER_TAG}
 Type=Application
-Exec=${ROOT_DIR}/run.sh
+Exec=${ROOT_DIR}/run.sh ${DOCKER_TAG}
 Terminal=false
 Icon=${FILES_TMP_DIR}/${DOCKER_TAG}.xpm
 Comment=Integrated Development Environment

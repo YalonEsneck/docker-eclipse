@@ -44,6 +44,7 @@ containerName='eclipse-ide'
 # Check if a custom image tag should be used.
 if [[ ${#} -gt 0 ]]; then
   DOCKER_IMAGE="${DOCKER_IMAGE%:*}:${1}"
+  containerName="eclipse-${1}"
 fi
 
 # Create the container to be able to retrieve its hostname for xhost later on.

@@ -28,12 +28,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     default-jre \
     libgtk-3-0 \
     build-essential \
+    sudo \
  && rm -rf /var/lib/apt/lists/*
 
 # Create unprivileged user to run Eclipse
 # User's UID and GID should match the builder's IDs in order not to screw up the file permissions and ownerships.
 RUN addgroup --gid 1000 $GROUP \
- && adduser --disabled-password --disabled-login --uid $UID --gid $GID --gecos '' $USER
+ && adduser --disabled-password --disabled-login --uid $UID --gid $GID --gecos '' $USER \
+ && echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
 # Get Eclipse from builder container
 COPY --from=builder /opt /opt

@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     default-jre \
     libgtk-3-0 \
     sudo \
+    php-cli \
  && rm -rf /var/lib/apt/lists/*
 
 # Create unprivileged user to run Eclipse

@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
  && rm -rf /var/lib/apt/lists/*
 
 # Dirty download... Maybe there's a way to get the latest file automatically?
-RUN curl --progress-bar 'https://ftp.halifax.rwth-aachen.de/eclipse/technology/epp/downloads/release/2019-09/R/eclipse-java-2019-09-R-linux-gtk-x86_64.tar.gz' | tar xzf - -C /opt
+RUN curl --progress-bar 'https://ftp.halifax.rwth-aachen.de/eclipse/technology/epp/downloads/release/2019-12/R/eclipse-cpp-2019-12-R-linux-gtk-x86_64.tar.gz' | tar xzf - -C /opt
 
 # ----------------------------------------------------------------------------
 
@@ -27,6 +27,7 @@ RUN mkdir -p /usr/share/man/man1
 RUN apt-get update && apt-get install --no-install-recommends -y \
     default-jre \
     libgtk-3-0 \
+    build-essential \
     sudo \
  && rm -rf /var/lib/apt/lists/*
 

@@ -23,6 +23,7 @@ else
 fi
 
 docker build "${ROOT_DIR}" \
+  --pull \
   --tag="${DOCKER_IMAGE}" \
   --build-arg UID=${uid} \
   --build-arg GID=${gid} \
